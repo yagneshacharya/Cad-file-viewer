@@ -21,8 +21,7 @@ function App() {
 
     try {
       setLoading(true);
-      const data = await axios.post("http://localhost:5000/api/upload", formData);
-
+      const data = await axios.post("https://cad-file-viewer.onrender.com/api/upload", formData);
 
       setSearchTerm("");
       setPage(1); // Reset to first page after upload
@@ -37,7 +36,7 @@ function App() {
 
   const fetchBlocks = async (pg = page, search = searchTerm) => {
     try {
-      const res = await axios.get("http://localhost:5000/api/sblocks", {
+      const res = await axios.get("https://cad-file-viewer.onrender.com/api/sblocks", {
         params: {
           page: pg,
           limit: 5,
