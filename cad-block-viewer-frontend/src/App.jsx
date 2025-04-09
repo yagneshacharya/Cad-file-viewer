@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-xl mx-auto bg-white rounded-2xl shadow p-6 space-y-6">
-        <h1 className="text-2xl font-bold text-gray-800">📐 CAD Block Viewer</h1>
+        <h1 className="text-2xl font-bold text-gray-800">📐 CAD Block Viewer (.dxf files allowed) </h1>
 
         <input
           type="file"
