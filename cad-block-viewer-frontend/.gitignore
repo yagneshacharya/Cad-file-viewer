@@ -1,0 +1,21 @@
+# Vite & Node modules
+node_modules
+dist
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv files (if any)
+.env
+.env.*
+
+# Mac system files
+.DS_Store
+
+# VSCode settings (optional, but good if you're working in a team)
+.vscode
+
+# Output of build analyzers
+stats.html

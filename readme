@@ -1,0 +1,132 @@
+## 📘 API Documentation
+
+This Project only accepts .dxf files 
+
+
+
+
+Documentation
+
+
+🔄  POST /api/upload
+
+Upload a .dxf file, extract blocks, and store them in the database.
+
+Request Type: multipart/form-data
+
+Form Field:
+
+file – Required. Must be a .dxf file. Other formats are rejected.
+
+Response:
+
+{
+  "message": "DXF blocks parsed and saved successfully",
+  "blocks": [
+    {
+      "id": 1,
+      "fileName": "sample.dxf",
+      "blockName": "Block_A",
+      "baseX": 100,
+      "baseY": 200,
+      "baseZ": 0,
+      "entityCount": 5
+    }
+  ]
+}
+
+Errors:
+
+400 – No file uploaded or invalid file type (only .dxf allowed)
+
+500 – Parsing or database error
+
+
+📦 GET /api/blocks?page=1&limit=5
+
+Description:
+Get a paginated list of all extracted blocks.
+
+Query Params:
+
+-- page (optional) – Page number (default: 1)
+
+-- limit (optional) – Results per page (default: 5)
+
+Response:
+
+
+{
+  "currentPage": 1,
+  "totalPages": 2,
+  "totalBlocks": 10,
+  "blocks": [
+    {
+      "id": 7,
+      "fileName": "example.dxf",
+      "blockName": "Door_001",
+      "baseX": 123.45,
+      "baseY": 678.90,
+      "baseZ": 0,
+      "entityCount": 3
+    }
+  ]
+}
+
+
+Errors:
+
+500 – Database error
+
+
+🔍 GET /api/sblocks?search=Block&page=1&limit=5
+
+Description:
+
+Search for blocks by name (case-insensitive), with pagination.
+
+Query Params:
+
+ -- search (optional) – String to search in blockName
+
+ -- page (optional) – Page number (default: 1)
+
+ -- limit (optional) – Results per page (default: 5)
+
+Response: (same format as /blocks endpoint)
+
+Errors:
+
+500 – Search error or DB failure
+
+
+📄 GET /api/blocks/:id
+
+Description:
+Fetch details of a specific block by its ID.
+
+Path Param:
+
+-- id – Integer block ID
+
+Response:
+
+{
+  "id": 3,
+  "fileName": "floorplan.dxf",
+  "blockName": "Window_02",
+  "baseX": 500,
+  "baseY": 150,
+  "baseZ": 0,
+  "entityCount": 7
+}
+
+
+Errors:
+
+404 – Block not found
+
+500 – DB or server error
+
+
+
