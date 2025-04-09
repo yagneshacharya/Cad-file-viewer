@@ -1,17 +1,16 @@
 const { DataSource } = require("typeorm");
+require("dotenv").config();
 
 const AppDataSource = new DataSource({
-  type: "postgres",
-  host: "ep-yellow-credit-a1ibloaa-pooler.ap-southeast-1.aws.neon.tech",
-  port: 5432,
-  username: "neondb_owner",
-  password: 'npg_y59THsJMDFtr',
-  database: "neondb",
+  type: 'postgres',
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT),
+  username: process.env.DB_USERNAME,
+  password: `${process.env.DB_PASSWORD}`,
+  database: process.env.DB_NAME,
+  ssl: process.env.SSL === 'true' ? { rejectUnauthorized: false } : false,
   synchronize: true,
   entities: [require("./entities/Block")],
-  ssl: {
-    rejectUnauthorized: false,
-  },
 });
 
 module.exports = { AppDataSource };
