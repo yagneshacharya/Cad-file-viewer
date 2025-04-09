@@ -12,6 +12,10 @@ app.use(cors({
 // Register routes
 app.use('/api', fileUploadRoutes);
 
+app.get('/', (req, res) => {
+  res.json('Backend is alive!');
+});
+
 // Initialize TypeORM and start server
 AppDataSource.initialize()
   .then(() => {
@@ -19,7 +23,7 @@ AppDataSource.initialize()
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(`🚀 Server running `);
     });
   })
   .catch((error) => {
